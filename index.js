@@ -66,24 +66,36 @@ bot.on('poll-error', error => {
        }).start();
        console.log('Bot started!');
 
-       const scene = new Scene('нет',
+       const scene = new Scene('Финал 2',
           (ctx) => {
-            ctx.scene.next();
-            ctx.reply('Все равно получишь, ок?');//.catch(e => console.error(e));
+            ctx.reply(step['Финал 2'].question);
           },
           (ctx) => {
-            ctx.session.name = ctx.message.text;
+            /*ctx.session.name = ctx.message.text;
             //ctx.scene.leave();
             ctx.reply(`Иди нахер, ${ctx.session.name}`);
-            ctx.scene.leave();
+            ctx.scene.leave();*/
           },
         );
+
+        /*const scene2 = new Scene('Финал 3',
+           (ctx) => {
+             ctx.reply(step['Финал 3'].question);
+           },
+           (ctx) => {
+             /*ctx.session.name = ctx.message.text;
+             //ctx.scene.leave();
+             ctx.reply(`Иди нахер, ${ctx.session.name}`);
+             ctx.scene.leave();
+           },
+         );*/
 
 
        //Создаем объекты сессии и общей сцены
        //----------Почему передаем одну сцену в stage? Можно ли передавать сразу все сцены?
        const session = new Session();
        const stage = new Stage(scene);
+       //const stage2 = new Stage(scene2);
 
         bot.use(session.middleware());
         bot.use(stage.middleware());
@@ -94,16 +106,20 @@ bot.on('poll-error', error => {
 
 
         let keyboardTexts = [];
+        //Метод реакции на сообщения
         bot.on((ctx) => {
+          //если команда есть в шагах
           if (steps[ctx.message.text]) {
+            let step = steps[ctx.message.text];
             keyboardTexts = addBtns(ctx.message.text);
-            ctx.reply(steps[ctx.message.text].question, null, Markup
-              .keyboard(keyboardTexts).oneTime());
+            ctx.reply(step.question, null, Markup
+              .keyboard(keyboardTexts, { columns: 1}).oneTime());
           }
+          //если сообщение неизвестно
           else  {
             keyboardTexts = addBtns('');
             ctx.reply(steps[''].question, null, Markup
-              .keyboard(keyboardTexts).oneTime());
+              .keyboard(keyboardTexts, { columns: 1}).oneTime());
           }
         });
 
@@ -114,6 +130,7 @@ bot.on('poll-error', error => {
                `(${util.inspect(error, false, 8, true)})`)
        })
 
+       //Добавляем кнопки в сообщение
        function addBtns(textCommand) {
          keyboardTexts = [];
          for (let i =0; i < steps[textCommand].btns.length; i++ )
