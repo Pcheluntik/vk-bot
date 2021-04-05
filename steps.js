@@ -27,10 +27,8 @@ module.exports = steps = {
   },
   "Принять неизбежное": {
     question: `На открытку`,
-    photoUrl: './11.jpg',
-    //'https://sun9-23.userapi.com/impg/9QoR9Aa5T5-P5-1IKdm_Bnofaq9AjD7lhJbyxg/bG2BuqexUxU.jpg?size=617x544&quality=96&sign=4c752b00fd0dbfa37bc2dcd659e51d99&type=album',
+    photoUrl: 'https://vk.com/vsratie_otkritky?w=wall-203141950_226',
 
-    /*picture*/
     btns: [
       {msg: 'Попробовать еще раз'},
     ]
@@ -38,19 +36,18 @@ module.exports = steps = {
   "Достать икону": {
     question: `Ну ты и стремный тип!
                На открытку.`,
+    photoUrl: 'https://vk.com/vsratie_otkritky?w=wall-203141950_209',
     btns: [
       {msg: 'Попробовать еще раз'},
     ]
   },
   "Да, давай": {
-    question: `Как-то ты слишком легко согласился. Не дам.`,
-    photoUrl: './11.jpg',
+    question: `Как-то ты слишком легко согласился. Не дам. Хотя ладно. Лови.`,
+    photoUrl: 'https://vk.com/vsratie_otkritky?w=wall-203141950_217',
     //'https://sun9-23.userapi.com/impg/9QoR9Aa5T5-P5-1IKdm_Bnofaq9AjD7lhJbyxg/bG2BuqexUxU.jpg?size=617x544&quality=96&sign=4c752b00fd0dbfa37bc2dcd659e51d99&type=album',
 
     /*picture*/
-    btns: [
-      {msg: 'Ну пожалуйста'},
-    ]
+
   },
 
 }

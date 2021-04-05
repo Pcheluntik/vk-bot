@@ -112,9 +112,15 @@ bot.on('poll-error', error => {
           if (steps[ctx.message.text]) {
             let step = steps[ctx.message.text];
             keyboardTexts = addBtns(ctx.message.text);
-            ctx.reply(step.question, null, Markup
+
+            let photoAttach = step.photoUrl ? step.photoUrl : null;
+
+
+            ctx.reply(step.question, photoAttach, Markup
               .keyboard(keyboardTexts, { columns: 1}).oneTime());
-          }
+              console.log(ctx);
+            }
+
           //если сообщение неизвестно
           else  {
             keyboardTexts = addBtns('');
@@ -133,9 +139,11 @@ bot.on('poll-error', error => {
        //Добавляем кнопки в сообщение
        function addBtns(textCommand) {
          keyboardTexts = [];
-         for (let i =0; i < steps[textCommand].btns.length; i++ )
-         {
-           keyboardTexts.push(steps[textCommand].btns[i].msg);
+         if(steps[textCommand].btns) {
+           for (let i =0; i < steps[textCommand].btns.length; i++ )
+           {
+             keyboardTexts.push(steps[textCommand].btns[i].msg);
+           }
          }
          return keyboardTexts;
        }
