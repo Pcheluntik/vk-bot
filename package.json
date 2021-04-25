@@ -10,6 +10,7 @@
   "author": "Vikentii Ekgart",
   "license": "ISC",
   "dependencies": {
+    "git": "^0.1.5",
     "node-vk-bot": "^1.2.3",
     "node-vk-bot-api": "^3.4.0"
   }

@@ -1,47 +1,3 @@
-/* { Bot, Keyboard, KeyboardColor } = require('node-vk-bot');
-const util = require('util');
-
-const steps = require('./steps');
-
-const bot = new Bot({
-    token: '20bcfc9fccc77d5d862a43bb462b35a2bc7bb260a1eb30aac1a55ce0a607023972b7b9ccd6d77c916f0aa',
-    group_id: 203141950
-}).start();
-
-console.log('Bot started!');
-
-bot.get(/./i, (message, exec, reply) => {
-  let keyboard = new Keyboard(true);*/
-  /*let info;*/
-//  let info = message.payload && steps[JSON.parse(message.payload)] || steps[''];
-//  let photo = message.uploadPhoto && steps[JSON.parse(message.uploadPhoto)] || steps[''];
-
-  /*if (message.payload) {
-        info = JSON.parse(message.payload);
-        console.log(steps[info]);
-        messageFromBot = steps[info];
-      } else {
-        messageFromBot = steps[''];
-      };*/
-/*  for (let i = 0; i < info.btns.length; i++) {
-    if (i) keyboard.addRow();
-    const btn = info.btns[i];
-    keyboard.addButton(btn.msg, KeyboardColor.PRIMARY, JSON.stringify(btn.next));
-  }
-
-    if (info.photoUrl) {
-      console.log(photo.photoUrl);
-      reply(photo.photoUrl, {keyboard}).catch(e => console.error(e));
-    } else {
-      reply(info.question, {keyboard}).catch(e => console.error(e));
-    };
-})
-
-bot.on('poll-error', error => {
-    console.error('error occurred on a working with the Long Poll server ' +
-        `(${util.inspect(error, false, 8, true)})`)
-})*/
-
 /*TO DO: 1. Подключить бота
        2. Заставить его отвечать*/
 
@@ -109,20 +65,21 @@ bot.on('poll-error', error => {
         //Метод реакции на сообщения
         bot.on((ctx) => {
           //если команда есть в шагах
+          if (ctx.message.text == "Связаться с администратором")
+          {
+            ctx.reply(`Ваш звонок очень важен для нас, ожидайте на линии`);
+            bot.stop();
+          }
           if (steps[ctx.message.text]) {
             let step = steps[ctx.message.text];
             keyboardTexts = addBtns(ctx.message.text);
-
             let photoAttach = step.photoUrl ? step.photoUrl : null;
-
-
             ctx.reply(step.question, photoAttach, Markup
               .keyboard(keyboardTexts, { columns: 1}).oneTime());
-              console.log(ctx);
             }
 
           //если сообщение неизвестно
-          else  {
+          if (ctx.message.text != "Связаться с администратором" || steps[ctx.message.text] == false){
             keyboardTexts = addBtns('');
             ctx.reply(steps[''].question, null, Markup
               .keyboard(keyboardTexts, { columns: 1}).oneTime());

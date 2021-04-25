@@ -3,7 +3,8 @@ module.exports = steps = {
     question: `Доброе утро, хочешь открытку? `,
     btns: [
       {msg: 'Нет'},
-      {msg: 'Да, давай'}
+      {msg: 'Да, давай'},
+      {msg: 'Связаться с администратором'}
     ]
   },
   "Нет": {
@@ -43,11 +44,6 @@ module.exports = steps = {
   },
   "Да, давай": {
     question: `Как-то ты слишком легко согласился. Не дам. Хотя ладно. Лови.`,
-    photoUrl: 'https://vk.com/vsratie_otkritky?w=wall-203141950_217',
-    //'https://sun9-23.userapi.com/impg/9QoR9Aa5T5-P5-1IKdm_Bnofaq9AjD7lhJbyxg/bG2BuqexUxU.jpg?size=617x544&quality=96&sign=4c752b00fd0dbfa37bc2dcd659e51d99&type=album',
-
-    /*picture*/
-
+    photoUrl: 'https://vk.com/vsratie_otkritky?w=wall-203141950_217'
   },
-
 }
